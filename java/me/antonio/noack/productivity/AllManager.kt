@@ -2,6 +2,7 @@ package me.antonio.noack.productivity
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -21,6 +22,10 @@ class AllManager : AppCompatActivity() {
         setContentView(R.layout.all)
 
         pref = getPreferences(Context.MODE_PRIVATE)
+
+        if(Build.VERSION.SDK_INT >= 21){
+            window.navigationBarColor = 0xff000000.toInt()
+        }
 
         actionBar?.hide()
 
