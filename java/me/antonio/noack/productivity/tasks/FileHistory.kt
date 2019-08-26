@@ -1,10 +1,7 @@
 package me.antonio.noack.productivity.tasks
 
-import android.view.View
-import android.widget.TextView
 import kotlinx.android.synthetic.main.main.*
 import me.antonio.noack.productivity.AllManager
-import me.antonio.noack.productivity.R
 import me.antonio.noack.productivity.tasks.WebAPI.getText
 import java.util.concurrent.ConcurrentSkipListSet
 import kotlin.math.abs
@@ -63,76 +60,13 @@ object FileHistory {
                 val list = all.todoList
                 list.removeAllViews()
 
+                val res = all.resources
+
                 for(entry in matchingEntries){
 
-                    val view = inflater.inflate(R.layout.result, list, false)
-                    val bg = view.findViewById<View>(R.id.background)
-                    val title = view.findViewById<TextView>(R.id.title)
-                    val flagView = view.findViewById<TextView>(R.id.flags)
-                    val detailView = view.findViewById<TextView>(R.id.details)
-                    val classView = view.findViewById<TextView>(R.id.clazz)
-
-                    val flags = entry.taskFlags
-
-                    val res = all.resources
-
-                    val color = when {
-                        // flags.contains("deleted") -> res.getColor(R.color.deleted)
-                        flags.contains("fixing") || flags.contains("fix") -> res.getColor(R.color.fixing)
-                        flags.contains("todo") -> res.getColor(R.color.todo)
-                        flags.contains("done") -> res.getColor(R.color.done)
-                        flags.contains("doing") -> res.getColor(R.color.doing)
-                        else -> res.getColor(R.color.unknown)
-                    }
-
-                    bg.setBackgroundColor(color or 0xff000000.toInt())
-
-                    // todo put all this stuff into it's own class
-
-                    // done onclick open window/box with more details, e.g. the page name
-                    // - or do that on swipe? :) or just on click? would be nice, too :)
-
-                    list.addView(view)
-
-                    val text = entry.taskText
-
-                    val splitIndex = text.indexOf('\n')
-                    val headline = if(splitIndex > 0) text.substring(0, splitIndex) else text
-                    val info = if(splitIndex > 0) text.substring(splitIndex+1).trim() else ""
-
-                    title.text = headline
-                    detailView.text = info
-                    classView.text = entry.path
-                        .replace("java/me/antonio/noack/", "")
-                        .replace("me/antonio/noack/", "")
-                        .replace("/$projectName/", "/")
-                        .replace('/', '.')
-                    flagView.text = flags.joinToString(", "){ "#$it" }
-
-                    var hasDetails = false
-
-                    fun openDetails(){
-                        hasDetails = true
-                        if(info.isNotEmpty()) detailView.visibility = View.VISIBLE
-                        classView.visibility = View.VISIBLE
-                    }
-
-                    fun closeDetails(){
-                        hasDetails = false
-                        classView.visibility = View.GONE
-                        detailView.visibility = View.GONE
-                    }
-
-                    fun toggle(){
-                        if(hasDetails) closeDetails()
-                        else openDetails()
-                    }
-
-                    bg.setOnClickListener { toggle() }
-                    title.setOnClickListener { toggle() }
-                    flagView.setOnClickListener { toggle() }
-
-                    closeDetails()
+                    // display the items
+                    // done put all this stuff into it's own class
+                    EntryDisplayer.display(inflater, list, res, entry)
 
                 }
 
