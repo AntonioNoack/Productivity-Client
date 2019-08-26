@@ -15,7 +15,7 @@ import kotlin.concurrent.thread
 
 class AllManager : AppCompatActivity() {
 
-    lateinit var pref: SharedPreferences
+    private lateinit var pref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +46,7 @@ class AllManager : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 FileHistory.search = s.toString()
-                thread {
-                    FileHistory.updateList(this@AllManager)
-                }
+                update()
             }
         })
 
@@ -58,14 +56,12 @@ class AllManager : AppCompatActivity() {
 
         reload.setOnClickListener {
             FileHistory.lastRequestTime = 0L
-            thread {
-                FileHistory.updateList(this@AllManager)
-            }
+            update()
         }
 
     }
 
-    fun joinProject(projectName: String){
+    private fun joinProject(projectName: String){
 
         pref.edit().putString("lastProject", projectName).apply()
 
@@ -73,10 +69,14 @@ class AllManager : AppCompatActivity() {
 
         FileHistory.projectName = projectName
 
+        update()
+
+    }
+
+    private fun update(){
         thread {
             FileHistory.updateList(this)
         }
-
     }
 
     override fun onResume() {
