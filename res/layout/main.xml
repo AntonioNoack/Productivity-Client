@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:background="@color/colorPrimaryDark"
+              android:orientation="vertical"
+              android:layout_margin="5dp"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/colorAccent2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <Button
+                android:id="@+id/back"
+                android:background="@drawable/ic_arrow_back_white_24dp"
+                android:layout_width="50sp"
+                android:layout_height="50sp"/>
+
+        <EditText
+                android:id="@+id/search"
+                android:textColor="#fff"
+                android:maxLines="1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="50sp"
+                android:hint="@string/search"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+        <Button
+                android:id="@+id/reload"
+                android:background="@drawable/ic_cached_white_24dp"
+                android:layout_width="50sp"
+                android:layout_height="50sp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:id="@+id/todoList"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

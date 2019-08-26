@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Productivity</string>
+    <string name="your_project_name">Your Project Name</string>
+    <string name="please_replace">ERROR?!?</string>
+    <string name="enter">Start!</string>
+    <string name="search">Search</string>
+    <string name="todo_example">do this thing, or another one ;)</string>
+    <string name="flag_example">#nope, #flags, #kissMe</string>
+    <string name="class_example">maths/Math.kt</string>
+</resources>

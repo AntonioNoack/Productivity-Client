@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+    <FrameLayout
+            android:background="@color/colorAccent2"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <EditText
+                android:id="@+id/projectField"
+                android:textColor="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/your_project_name"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+    </FrameLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="15dp"/>
+
+    <Button
+            android:id="@+id/lastProjectButton"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/enter"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:background="@color/colorAccent2"/>
+
+    <View
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E9A65F</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#8182DFE7</color>
+    <color name="colorAccent2">#7A7A7A</color>
+    <color name="done">#759B4F</color>
+    <color name="fixing">#B84E4E</color>
+    <color name="doing">#009CFF</color>
+    <color name="todo">#D5A952</color>
+    <color name="unknown">#636363</color>
+    <color name="deleted">#303030</color>
+</resources>
