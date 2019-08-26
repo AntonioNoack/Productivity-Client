@@ -9,6 +9,8 @@ class Entry(var taskUID: Int,
             val todoIndex: Int,
             val taskFlags: HashSet<String>): Comparable<Entry> {
 
+    var tlc = taskText.toLowerCase()
+
     override fun toString(): String {
         return "#$taskUID.$version: ${taskText.replace("\n", "\\n")}, ${taskFlags.joinToString(" "){"#$it"}}"
     }

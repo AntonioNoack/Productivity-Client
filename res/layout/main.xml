@@ -37,6 +37,11 @@
 
     </LinearLayout>
 
+    <me.antonio.noack.productivity.ColorBarView
+            android:id="@+id/colorBarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

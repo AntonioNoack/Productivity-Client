@@ -5,12 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import me.antonio.noack.productivity.ColorBarView
 import me.antonio.noack.productivity.R
 
 object EntryDisplayer {
 
+    fun resetColorCounts(){
+        colorCounts.clear()
+        colorCountSum = 0
+    }
+
+    val colorCounts = HashMap<Int, Int>(8)
+    var colorCountSum = 0
+    fun incColorCount(color: Int){
+        colorCounts[color] = colorCounts[color]?.plus(1) ?: 1
+        colorCountSum ++
+    }
+
+    fun displayColorCounts(colorBarView: ColorBarView){
+        colorBarView.invalidate()
+    }
+
     fun display(inflater: LayoutInflater, list: ViewGroup, res: Resources, entry: Entry){
 
+        // get those views
         val view = inflater.inflate(R.layout.result, list, false)
         val bg = view.findViewById<View>(R.id.background)
         val title = view.findViewById<TextView>(R.id.title)
@@ -20,6 +38,7 @@ object EntryDisplayer {
 
         val flags = entry.taskFlags
 
+        // find the color
         val color = when {
             // flags.contains("deleted") -> res.getColor(R.color.deleted)
             flags.contains("fixing") || flags.contains("fix") -> res.getColor(R.color.fixing)
@@ -28,6 +47,8 @@ object EntryDisplayer {
             flags.contains("doing") -> res.getColor(R.color.doing)
             else -> res.getColor(R.color.unknown)
         }
+
+        incColorCount(color)
 
         bg.setBackgroundColor(color or 0xff000000.toInt())
 

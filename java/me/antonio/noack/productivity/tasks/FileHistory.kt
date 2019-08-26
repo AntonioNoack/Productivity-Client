@@ -33,7 +33,7 @@ object FileHistory {
             } else {
                 val parts = search.split(' ').map { it.trim() }.filter { it.isNotEmpty() }
                 val flags = parts.filter { it.startsWith("#") && it.length > 1 }.map { it.substring(1) }
-                val nonFlags = parts.filter { !it.startsWith("#") }
+                val nonFlags = parts.filter { !it.startsWith("#") }.map { it.toLowerCase() }
                 val deleted = flags.contains("deleted")
                 matchingEntries.clear()
                 entries@ for(entry in allEntries){
@@ -44,7 +44,7 @@ object FileHistory {
                             }
                         }
                         for(nonFlag in nonFlags){
-                            if(!entry.path.contains(nonFlag) && !entry.taskText.contentEquals(nonFlag)){
+                            if(!entry.path.contains(nonFlag) && !entry.tlc.contains(nonFlag)){
                                 continue@entries
                             }
                         }
@@ -62,13 +62,17 @@ object FileHistory {
 
                 val res = all.resources
 
-                for(entry in matchingEntries){
+                EntryDisplayer.resetColorCounts()
+
+                for(entry in matchingEntries.reversed()){
 
                     // display the items
                     // done put all this stuff into it's own class
                     EntryDisplayer.display(inflater, list, res, entry)
 
                 }
+
+                EntryDisplayer.displayColorCounts(all.colorBarView)
 
             }
 
