@@ -87,9 +87,9 @@ object FileHistory {
 
                     bg.setBackgroundColor(color or 0xff000000.toInt())
 
-                    println("${entry.taskText}: ${flagView.text}")
+                    // todo put all this stuff into it's own class
 
-                    // todo onclick open window/box with more details, e.g. the page name
+                    // done onclick open window/box with more details, e.g. the page name
                     // - or do that on swipe? :) or just on click? would be nice, too :)
 
                     list.addView(view)
@@ -143,7 +143,7 @@ object FileHistory {
 
     fun updateList(all: AllManager){
 
-        println("searching for $projectName")
+        // println("searching for $projectName")
 
         if(projectName.isEmpty()){
             allEntries.clear()
@@ -181,7 +181,7 @@ object FileHistory {
                     val entry = Entry(taskUID, version, taskText, created, fileName, lastPartOfName, todoIndex, taskFlags)
                     // done do sth with entry
                     entries.add(entry)
-                    println(entry)
+                    // println(entry)
                 }
             }
         }
