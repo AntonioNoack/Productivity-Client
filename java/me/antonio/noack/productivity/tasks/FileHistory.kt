@@ -67,7 +67,7 @@ object FileHistory {
                 for(entry in matchingEntries.reversed()){
 
                     // display the items
-                    // done put all this stuff into it's own class
+                    // done put all this stuff into its own class
                     EntryDisplayer.display(inflater, list, res, entry)
 
                 }

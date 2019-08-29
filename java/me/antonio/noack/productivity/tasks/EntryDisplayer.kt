@@ -69,6 +69,7 @@ object EntryDisplayer {
             .replace("java/me/antonio/noack/", "")
             .replace("me/antonio/noack/", "")
             .replace("/${FileHistory.projectName}/", "/")
+            .replace("/${FileHistory.projectName.toLowerCase()}/", "/")
             .replace('/', '.')
         flagView.text = flags.joinToString(", "){ "#$it" }
 
